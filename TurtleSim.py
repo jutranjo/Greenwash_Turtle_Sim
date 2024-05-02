@@ -26,12 +26,11 @@ class GameState:
             HighestIndustry = min(CardsToCheck, key = lambda card: IndustrySpace - card.IndustryValue)
             CardsToCheck.remove(HighestIndustry)
             if (IndustrySpace - HighestIndustry.IndustryValue >= 0):
-                CardToRemove = min(originalHand, key = lambda card: HighestIndustry.IndustryValue - card.IndustryValue)
-                self.Hand.HeldCards.remove(CardToRemove)
+                CardToRemove = min(originalHand, key = lambda card: abs(HighestIndustry.IndustryValue - card.IndustryValue))
+                originalHand.remove(CardToRemove)
                 self.Industry = self.Industry + HighestIndustry.IndustryValue
-                break
-        else:
-            self.playHighestGreenWash()
+                return
+        self.playHighestGreenWash()
         
         
 
