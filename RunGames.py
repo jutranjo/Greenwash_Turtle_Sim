@@ -18,7 +18,7 @@ turnsToTake = 5
 #Simulation run size
 simRunSize = 10000
 
-greenWashCounts = {}
+IndustryCounts = {}
 
 for _ in range(simRunSize):
     #Prepare Deck
@@ -44,20 +44,20 @@ for _ in range(simRunSize):
         PlayerHand.Draw(cardDrawn)
         CurrentGame.PlaySafe()
 
-    endGameScore = CurrentGame.GreenWash
+    endGameScore = CurrentGame.Industry
 
-    if endGameScore in greenWashCounts:
-        greenWashCounts[endGameScore] += 1
+    if endGameScore in IndustryCounts:
+        IndustryCounts[endGameScore] += 1
     else:
-        greenWashCounts[endGameScore] = 1
+        IndustryCounts[endGameScore] = 1
 
-GreenWashScores = list(greenWashCounts.keys())
-GreenWashGames = list(greenWashCounts.values())
+IndustryScores = list(IndustryCounts.keys())
+IndustryGames = list(IndustryCounts.values())
 
-plt.bar(GreenWashScores, GreenWashGames)
+plt.bar(IndustryScores, IndustryGames)
 
 plt.title("Results after playing "+str(simRunSize)+" games")
-plt.xlabel("End of game GreenWash value")
+plt.xlabel("End of game Industry value")
 plt.ylabel("Number of games with that score")
 
 plt.show()
