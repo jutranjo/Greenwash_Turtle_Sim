@@ -35,6 +35,8 @@ for _ in range(simRunSize):
     #Play the 2 highest greenwash cards:
     CurrentGame.playHighestGreenWash()
     CurrentGame.playHighestGreenWash()
+    #Play 1 card
+    CurrentGame.PlaySafe()
 
     #Plays out a number of turns specified in turnsToTake
     for _ in range(turnsToTake):
