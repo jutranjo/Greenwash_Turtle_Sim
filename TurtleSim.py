@@ -1,4 +1,6 @@
 import copy
+from itertools import chain
+import random
 
 class GameState:
     def __init__(self):
@@ -44,3 +46,15 @@ class Card:
     def __init__(self,GreenWashValue):
         self.GreenWashValue = GreenWashValue
         self.IndustryValue = 6 - GreenWashValue
+    def __repr__(self) -> str:
+        return (str(self.GreenWashValue)+'/'+str(self.IndustryValue))
+
+def TurnDeckIntoListOfCards(CardDictionary):
+    ListOfCards = []
+    for (CardValue,CardCount) in CardDictionary.items():
+        ListOfCards.append([Card(CardValue)]*CardCount)
+    return list(chain(*ListOfCards))
+
+def DrawRandomCard(Deck):
+    cardDrawn = Deck.pop(random.randint(0,len(Deck))-1)
+    return cardDrawn
